@@ -1,5 +1,5 @@
-io
-pyPDF2
+fitz
+os
 Image
 streamlit
 transformers
