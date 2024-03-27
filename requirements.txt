@@ -1,5 +1,7 @@
-Image
-transformers
-streamlit
 fitz
 frontend
+Image
+streamlit
+transformers
+
+
