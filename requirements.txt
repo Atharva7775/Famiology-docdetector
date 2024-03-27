@@ -1,6 +1,5 @@
 io
 pyPDF2
-frontend
 Image
 streamlit
 transformers
