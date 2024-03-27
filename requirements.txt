@@ -1,0 +1,5 @@
+fitz
+io
+Image
+transformers
+streamlit
