@@ -4,4 +4,6 @@ PyMuPDF
 torch
 transformers
 os
+io
+fitz
 
