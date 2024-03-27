@@ -1,3 +1,23 @@
+
+None selected 
+
+
+Skip to content
+Using Gmail with screen readers
+in:sent 
+
+1 of 514
+App.py
+
+Atharva Bapat <bapat.atharva9@gmail.com>
+Attachments
+5:03 PM (5 minutes ago)
+to hiloni.theoremlabs
+
+
+ One attachment
+  •  Scanned by Gmail
+whernandez@theoremlabs.io. Press tab to insert.
 # from dotenv import load_dotenv
 import streamlit as st
 from PIL import Image
@@ -41,7 +61,7 @@ def main():
     
     st.set_page_config(page_title='Famiology.docdetector', page_icon='./favicon (2).ico')
     st.header('Famiology Document Detector')
-    st.sidebar.image("./FamiologyTextLogo.png", use_column_width=True)
+    st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
     
     with st.sidebar:
         st.header('About App')
@@ -101,3 +121,5 @@ def pdf_to_img(uploaded_file):
 
 if __name__ == '__main__':
         main()
+app.py
+Displaying app.py. 
