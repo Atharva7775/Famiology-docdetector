@@ -3,3 +3,4 @@ io
 Image
 transformers
 streamlit
+fitz
