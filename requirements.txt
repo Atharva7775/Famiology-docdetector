@@ -1,4 +1,5 @@
 fitz
+PyMuPDF
 frontend
 Image
 streamlit
