@@ -101,5 +101,4 @@ def pdf_to_img(uploaded_file):
 
 if __name__ == '__main__':
         main()
-app.py
-Displaying app.py. 
+
