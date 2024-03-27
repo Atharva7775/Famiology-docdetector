@@ -1,12 +1,8 @@
-# from dotenv import load_dotenv
-import fitz
 import streamlit as st
-from PyPDF2 import PdfReader
-from PIL import Image 
-# import pdf2imagefrom PyPDF2 import PdfFileReader
-# import io
+from PIL import Image
+import fitz 
+import io
 import os
-from pdf2image import convert_from_bytes
 from transformers import CLIPProcessor, CLIPModel
 CLIPProcessor.safety_checker = None
 # CLIPProcessor.safety_checker = None
@@ -63,11 +59,12 @@ def main():
     uploaded_file = st.file_uploader("Choose a file to upload", type=['png', 'jpeg', 'jpg', 'pdf'])
     
     if uploaded_file is not None:
+        # Display the uploaded image
         if uploaded_file.type == 'application/pdf':
-            image = pdf_to_img(uploaded_file.getvalue())
+            uploaded_file = pdf_to_img(uploaded_file)
             # st.image(uploaded_file, caption='Uploaded Image.', use_column_width=True)
             # scenario1 = img2text(uploaded_file)
-            img2text(image)
+            img2text(uploaded_file)
             # with st.expander("Identified Document Type"):
             #     print("Thank You for uploading ", st.write(scenario1))
         else:    
@@ -79,40 +76,26 @@ def main():
             # with st.expander("Extracted Text"):
             #     print("Thank You for uploading ", st.write(scenario))
 
-# def pdf_to_img(uploaded_file):
-#     # Read the PDF file
-#     pdf_data = uploaded_file.read()
+def pdf_to_img(uploaded_file):
+    # Open the PDF file
+    pdf_data = uploaded_file.read()
 
-#     # Open the PDF using PyPDF2
-#     pdf_reader = PdfFileReader(io.BytesIO(pdf_data))
+    # Create a PDF document object
+    pdf_document = fitz.open(stream=pdf_data, filetype="pdf")
 
-#     # Check if the PDF has any pages
-#     if pdf_reader.numPages == 0:
-#         raise ValueError("The PDF file is empty.")
+    # Get the first page of the PDF document
+    first_page = pdf_document.load_page(0)
 
-#     # Extract the first page of the PDF
-#     first_page = pdf_reader.getPage(0)
+    # Convert the first page to a pixmap
+    pixmap = first_page.get_pixmap()
 
-#     # Convert the PDF page to an image using PIL
-#     image = first_page.to_pil()
+    # Convert the pixmap to bytes
+    img_bytes = pixmap.tobytes()
 
-#     return image
-
-def pdf_to_img(pdf_data):
-    doc = fitz.open(stream=pdf_data, filetype="pdf")
+    # Create an image from the bytes
+    image = Image.open(io.BytesIO(img_bytes))
     
-    if doc.page_count == 0:
-        raise ValueError("No pages found in the PDF.")
-
-    # Render the first page as an image
-    first_page = doc[0]
-    pix = first_page.get_pixmap()
-    
-    # Convert the pixmap to a PIL image
-    image = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
-
     return image
-
 def create_static_directory():
     directory = 'static/'
     if not os.path.exists(directory):
@@ -122,7 +105,8 @@ def create_static_directory():
         print(f"Directory '{directory}' already exists.")
 
 create_static_directory()
+         
+        
 
 if __name__ == '__main__':
         main()
-
