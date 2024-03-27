@@ -1,4 +1,3 @@
-PyMuPDF
 Image
 transformers
 streamlit
