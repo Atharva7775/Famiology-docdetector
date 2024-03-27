@@ -1,4 +1,4 @@
-fitz
+PyMuPDF
 io
 Image
 transformers
