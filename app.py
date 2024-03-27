@@ -1,9 +1,12 @@
 # from dotenv import load_dotenv
 import streamlit as st
 from PIL import Image
-import fitz 
+# import fitz 
+# import pdf2image
 import io
 from transformers import CLIPProcessor, CLIPModel
+# from pdf2image import convert_from_bytes
+from PyPDF2 import PdfFileReader
 CLIPProcessor.safety_checker = None
 # CLIPProcessor.safety_checker = None
 # CLIPModel.safety_checker = None
@@ -39,7 +42,7 @@ def main():
     # img = Image.open('/Users/atharvabapat/Desktop/Theoremlabs-project/favicon (2).ico')
     # st.set_page_config(page_title="Document Identification")
     
-    st.set_page_config(page_title='Famiology.docdetector', page_icon='./favicon (2).ico')
+    st.set_page_config(page_title='Famiology.docdetector', page_icon='/Users/atharvabapat/Desktop/Theoremlabs-project/favicon (2).ico')
     st.header('Famiology Document Detector')
     st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
     
@@ -77,28 +80,24 @@ def main():
             #     print("Thank You for uploading ", st.write(scenario))
 
 def pdf_to_img(uploaded_file):
-    # Open the PDF file
+    # Read the PDF file
     pdf_data = uploaded_file.read()
 
-    # Create a PDF document object
-    pdf_document = fitz.open(stream=pdf_data, filetype="pdf")
+    # Open the PDF using PyPDF2
+    pdf_reader = PdfFileReader(io.BytesIO(pdf_data))
 
-    # Get the first page of the PDF document
-    first_page = pdf_document.load_page(0)
+    # Check if the PDF has any pages
+    if pdf_reader.numPages == 0:
+        raise ValueError("The PDF file is empty.")
 
-    # Convert the first page to a pixmap
-    pixmap = first_page.get_pixmap()
+    # Extract the first page of the PDF
+    first_page = pdf_reader.getPage(0)
 
-    # Convert the pixmap to bytes
-    img_bytes = pixmap.tobytes()
+    # Convert the PDF page to an image using PIL
+    image = first_page.to_pil()
 
-    # Create an image from the bytes
-    image = Image.open(io.BytesIO(img_bytes))
-    
     return image
-           
-        
+
 
 if __name__ == '__main__':
         main()
-
