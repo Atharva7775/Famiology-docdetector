@@ -1,9 +1,9 @@
 import streamlit as st
 from PIL import Image
+from transformers import CLIPProcessor, CLIPModel
 import fitz 
 import io
 import os
-from transformers import CLIPProcessor, CLIPModel
 CLIPProcessor.safety_checker = None
 # CLIPProcessor.safety_checker = None
 # CLIPModel.safety_checker = None
