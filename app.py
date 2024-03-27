@@ -39,9 +39,9 @@ def main():
     # img = Image.open('/Users/atharvabapat/Desktop/Theoremlabs-project/favicon (2).ico')
     # st.set_page_config(page_title="Document Identification")
     
-    st.set_page_config(page_title='Famiology.docdetector', page_icon='/Users/atharvabapat/Desktop/Theoremlabs-project/favicon (2).ico')
+    st.set_page_config(page_title='Famiology.docdetector', page_icon='./favicon (2).ico')
     st.header('Famiology Document Detector')
-    st.sidebar.image("FamiologyTextLogo.png", use_column_width=True)
+    st.sidebar.image("./FamiologyTextLogo.png", use_column_width=True)
     
     with st.sidebar:
         st.header('About App')
