@@ -1,9 +1,4 @@
-fitz
-os
-Image
-Pillow
-torch
 streamlit
+Pillow
+PyMuPDF
 transformers
-
-
