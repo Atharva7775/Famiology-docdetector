@@ -1,6 +1,8 @@
 fitz
 os
 Image
+Pillow
+torch
 streamlit
 transformers
 
