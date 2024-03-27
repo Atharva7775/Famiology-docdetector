@@ -3,3 +3,5 @@ Pillow
 PyMuPDF
 torch
 transformers
+os
+
