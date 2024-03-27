@@ -1,23 +1,3 @@
-
-None selected 
-
-
-Skip to content
-Using Gmail with screen readers
-in:sent 
-
-1 of 514
-App.py
-
-Atharva Bapat <bapat.atharva9@gmail.com>
-Attachments
-5:03 PM (5 minutes ago)
-to hiloni.theoremlabs
-
-
- One attachment
-  •  Scanned by Gmail
-whernandez@theoremlabs.io. Press tab to insert.
 # from dotenv import load_dotenv
 import streamlit as st
 from PIL import Image
