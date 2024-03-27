@@ -3,7 +3,7 @@ Pillow
 PyMuPDF
 torch
 transformers
-os
-io
 fitz
+io
+os
 
